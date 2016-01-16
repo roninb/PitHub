@@ -9,11 +9,9 @@
 		<!-- content -->
 		<div id="header">
     	<h3><img class="banner" src="../static/banner.gif" alt="PitHub"></h3></div>
-				<div class="section">
-			    {% from "navbar.html" import render_nav %}
-		</div><!--end nav bar section-->
 		<div class="section">
 				<h4 style="text-align:center;">PitHub</h4>
+				 {% from "navbar.html" import render_nav %}
 				{{ render_nav()}}
 				<p class="flow-text">Hi! Welcome to PitHub. This site is a place for anyone who needs motivation, be it a gentle push or a good kick in the rear. We keep your ambitions and your lifestyle goals balanced by offering you relaxing games when you've worked too much. It's also easy to keep track of how much work you've done with our adorable pit bulls.</p>
 			</div>
