@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #bed4d3;
+    color: #000;
+    font-family:  "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+    line-height: 1.6em;
+}
+#container {
+  width: 1200px;
+  margin: 0 auto;
+  border: 0px solid #000;
+  overflow: hidden;
+}
+#header{
+  width: 100%;
+  padding: 0;
+}
+img.banner {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
