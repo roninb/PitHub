@@ -3,8 +3,15 @@ create table user(
   userid integer primary key,
   username text not null,
   password text not null,
-  gusername text,
-  greponame text
+  gusername text
+);
+
+create table repo(
+  repoid integer primary key,
+  name text not null,
+  commits integer,
+  uid integer,
+  foreign key(uid) references user(userid)
 );
 
 drop table if exists pit;
