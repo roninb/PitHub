@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<body>
+	<title>PitHub</title> 
+
+	<link href="../static/style_pit.css" rel="stylesheet" type="text/css">
+</head>
+    {% from "navbar.html" import render_nav %}
+    <div class="container">
+		<!-- content -->
+		<div id="header">
+    	<h3><img class="banner" src="../static/banner.gif" alt="PitHub"></h3></div>
+		<div class="section">
+				<h4 style="text-align:center;">PitHub</h4>
+				{{ render_nav() }}
+				<p class="flow-text">Hi! Welcome to PitHub. This site is a place for anyone who needs motivation, be it a gentle push or a good kick in the rear. We keep your ambitions and your lifestyle goals balanced by offering you relaxing games when you've worked too much. It's also easy to keep track of how much work you've done with our adorable pit bulls.</p>
+			</div>
+        <div class="section row">
+            <div class="col s12 m12">
+              <form method=post>
+                {% if error %}
+                <p> {{ error }} </p>
+                {% endif %}
+                <p>
+                  Username: <input type="text" name="username" value="" />
+                  Password: <input type="password" name="password" value="" />
+                </p>
+                <p>No account? No problem! <a href="/signup">Sign up here!</a></p>
+                <p><button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button></p>
+              </form>
+          </div> 
+        </div> 
+		</div> 
+	</div> 
+
+
+</body></html>
