@@ -114,8 +114,29 @@ def feed():
 
 @app.route("/settings/", methods=['GET', 'POST'])
 def settings():
+    if not session.get('logged_in'):
+        return render_template("home.html", error="Must login before accessing settings page!")
     error=None
+    if request.method == "POST":
+        if request.form['gusername']:
+            add_query('update user set gusername=? where userid=?', (request.form['gusername'], str(session['userid']),))
+        if request.form['newrepo']:
+            if request.form['commits']:
+                add_query('insert into repo values(NULL,?,?,?)', (request.form['newrepo'], request.form['commits'], str(session['userid']),))
+            else:
+                add_query('insert into repo values(NULL,?,0,?)', (request.form['newrepo'], str(session['userid']),))
+        if request.form['repos'] and request.form['commits'] and not request.form['newrepo']:
+            add_query('update repo set commits=? where uid=?', (request.form['commits'], str(session['userid']),))
+        if request.form['password']:
+            add_query('update user set password=? where userid=?', (request.form['password'], str(session['userid']),))
+        if request.form['pitname']:
+            add_query('update pit set name=? where uid=?', (request.form['pitname'], str(session['userid']),))
     repos = query_db('select * from repo where uid=?', (str(session['userid']),))
+    if len(repos) == 1:
+        oldrepos = ["empty", "placeholder"]
+        oldrepos[1] = repos[0]
+        temprepos = repos
+        repos = oldrepos
     return render_template("/settings.html", error=error, repos=repos)
 
 @app.route('/signup/', methods=['GET','POST'])

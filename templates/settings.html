@@ -4,8 +4,7 @@
 	<body>
 		<header>
 	<title>Settings</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
-	<link href="style_pit.css" rel="stylesheet" type="text/css">
+	<link href="../static/style_pit.css" rel="stylesheet" type="text/css">
 </header>
 	</head>
 
@@ -16,7 +15,7 @@
 		<div class="section">
 			<div class="">
 				<h4 style="text-align:center;">PitHub</h4>
-				<p class="flow-text">Change various settings below.</p>
+				<p class="flow-text">Change various settings below. Any text you enter, will change your settings, so beware....</p>
 			</div>
         <div class="section row">
             <div class="col s12 m12">
@@ -26,18 +25,16 @@
                 {% endif %}
                 <p>
                   Github Username: <input type="text" name="gusername" value="" />
-                  <select name="species" class="broswer-default grey-text text-darken3">
+                  <select name="repos">
                     {% for repo in repos %}
-                      <option>{{ repo.name }}</name>
+                      <option>{{ repo.name }}</option>
+                    {% endfor %}
                   </select>
-                  {% endfor %}
                   Goal: <input type="number" name="commits" />
-                  <span>
-                    <input type="text" name="newrepo" value="" />
-                    <button class="btn waves-effect waves-light" type="submit" name="addrepo">Add</button>
-                  </span>
+                  Add Repo: <input type="text" name="newrepo" value="" />
                   Password: <input type="password" name="password" value="" />
                   Petname: <input type="text" name="pitname" value="" />
+                  You'll have to log out and log back in to see changes to your pet's name.
                 </p>
                 <p><button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button></p>
               </form>
