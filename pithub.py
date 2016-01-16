@@ -113,7 +113,7 @@ def feed():
         render_template("/home.html", error=error)
 
 @app.route("/settings/", methods=['GET', 'POST'])
-def settings():
+def settings(): 
     if not session.get('logged_in'):
         return render_template("home.html", error="Must login before accessing settings page!")
     error=None
@@ -141,7 +141,7 @@ def settings():
 
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
-    error = None
+    error = None 
     if request.method == 'POST':
         for q in query_db('select * from user'):
             if request.form['username'] == q['username']:
