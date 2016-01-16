@@ -142,4 +142,4 @@ def signup():
 if __name__ == "__main__":
     app.secret_key = 'knighthacks'
     app.config['SESSION_TYPE'] = 'memcache'
-    app.run(debug=True)
+    app.run(debug=True, host=os.getenv('IP','0.0.0.0'), port=int(os.getenv('PORT', '8080')))
