@@ -1,3 +1,5 @@
 Hello, {{ name }}!
-You own pet {{ pitname }}
+You own pet {% if pitname %}
+{{ pitname }}
+{% else %} Pit Bully! {% endif %}
 <a href="/logout">logout</a>

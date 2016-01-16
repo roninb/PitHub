@@ -1,5 +1,5 @@
 <html lang="en"><head></head><body class="white-text grey darken-2"><header>
-	<title>PitHub</title>
+	<title>Settings</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
 </header>
 
@@ -8,7 +8,7 @@
 		<div class="section">
 			<div class="">
 				<h4 style="text-align:center;">PitHub</h4>
-				<p class="flow-text">Hi! Welcome to PitHub. This site is a place for anyone who needs motivation, be it a gentle push or a good kick in the rear. We keep your ambitions and your lifestyle goals balanced by offering you relaxing games when you've worked too much. It's also easy to keep track of how much work you've done with our adorable pit bulls.</p>
+				<p class="flow-text">Change various settings below.</p>
 			</div>
         <div class="section row">
             <div class="col s12 m12">
@@ -17,10 +17,20 @@
                 <p> {{ error }} </p>
                 {% endif %}
                 <p>
-                  Username: <input type="text" name="username" value="" />
+                  Github Username: <input type="text" name="gusername" value="" />
+                  <select name="species" class="broswer-default grey-text text-darken3">
+                    {% for repo in repos %}
+                      <option>{{ repo.name }}</name>
+                  </select>
+                  {% endfor %}
+                  Goal: <input type="number" name="commits" />
+                  <span>
+                    <input type="text" name="newrepo" value="" />
+                    <button class="btn waves-effect waves-light" type="submit" name="addrepo">Add</button>
+                  </span>
                   Password: <input type="password" name="password" value="" />
+                  Petname: <input type="text" name="pitname" value="" />
                 </p>
-                <p>No account? No problem! <a href="/signup">Sign up here!</a></p>
                 <p><button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button></p>
               </form>
           </div>

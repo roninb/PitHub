@@ -4,6 +4,8 @@ create table user(
   username text not null,
   password text not null,
   gusername text
+-- add completed projects integer
+-- add unfinished projects integer
 );
 
 drop table if exists repo;
