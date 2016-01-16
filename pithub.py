@@ -76,7 +76,7 @@ def get_commits(github_username, github_repo):
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if session.get('logged_in'):
-        return render_template("/dash")
+        return render_template("/dash.html", name=session['username'], pitname=session['pitname'])
     error = None
     if request.method == 'POST':
         for q in query_db('select * from user where username=?', (request.form['username'],)):
@@ -102,6 +102,8 @@ def logout():
 
 @app.route("/dash/")
 def dash():
+    if not session.get('logged_in'):
+        return render_template("home.html", error="Must login before accessing the dashboard!")
     return render_template("dash.html", name=session['username'], pitname=session['pitname'])
 
 @app.route("/pet/", methods=['GET', 'POST'])
@@ -112,6 +114,8 @@ def pet():
 
 @app.route("/feed/")
 def feed():
+    if not session.get('logged_in'):
+        return render_template("home.html", error="Must login before feeding your pet!")
     try:
         repos = query_db('select * from repo where uid=?', (str(session['userid'])),)
         for repo in repos:
@@ -154,6 +158,8 @@ def settings():
 
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
+    if session.get('logged_in'):
+        return render_template("dash.html", name=session['username'], pitname=session['pitname'])
     error = None 
     if request.method == 'POST':
         for q in query_db('select * from user'):
