@@ -2,8 +2,8 @@
 /* CSS Document */
 
 body {
-    margin: 5px;
-    padding: 5px;
+    margin: 0px;
+    padding: 0px;
     background-color: #bed4d3;
     color: #000;
     font-family:  "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,sans-serif;
@@ -15,6 +15,11 @@ body {
   border: 0px solid #000;
   overflow: hidden;
 }
+#section {
+    margin: 20px;
+    padding: 5px;
+}
+
 #header{
   width: 100%;
   padding: 0;
@@ -24,4 +29,16 @@ img.banner {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+p {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+p.flow-text {
+    padding: 10px;
+    margin: 50px;
+    border: 40px;
+}
+h4 {
+    font-size: larger;
 }
