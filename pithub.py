@@ -71,6 +71,7 @@ def home():
             error = "Username not found"
             if request.form['password'] == q['password']:
                 session['username'] = q['username']
+                session['userid'] = q['userid']
                 session['github_username'] = q['gusername']
                 for p in query_db('select * from pit where uid=?', (str(q['userid']),)):
                     session['pitname'] = p['name']
@@ -113,7 +114,7 @@ def feed():
 @app.route("/settings/", methods=['GET', 'POST'])
 def settings():
     error=None
-    repos = query_db('select * from repo where uid=?', (session['userid']))
+    repos = query_db('select * from repo where uid=?', (str(session['userid']),))
     return render_template("/settings.html", error=error, repos=repos)
 
 @app.route('/signup/', methods=['GET','POST'])
@@ -132,6 +133,7 @@ def signup():
             print int(ident)
             add_query('insert into pit values(NULL,?,0,?,?)', (str(request.form['pitname']), datetime.now(), str(ident)))
             session['username'] = request.form['username']
+            session['userid'] = str(ident)
             session['pitname'] = request.form['pitname']
             session['health'] = 0
             return render_template("dash.html", name=session['username'], pitname=session['pitname'], health=session['health'])
