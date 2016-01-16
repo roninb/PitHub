@@ -19,9 +19,8 @@ body {
     margin: 20px;
     padding: 5px;
 }
-#section_new{
-    margin: 0 auto;
-    width: 50%;
+#btn-group {
+    text-align: center;
 }
 #header{
   width: 100%;
