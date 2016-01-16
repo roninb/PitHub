@@ -54,20 +54,20 @@ def get_commits(github_username, github_repo):
     current_datetime = datetime.now()
     two_weeks_ago = timedelta(weeks=2)
     since = current_datetime - two_weeks_ago
-    print github_username + github_repo
     githuburl = 'https://api.github.com/repos/%s/%s/commits?since=%s' % (github_username, github_repo, since.isoformat())
     r = requests.get(githuburl)
     j = r.json()
     
     goal = query_db('select commits from repo where name=? and uid=?', (github_repo, str(session['userid'])), True)
     current_health = query_db('select health from pit where uid=?', (str(session['userid'])),)
-    feed = current_health[0][0] + 1 
-    starve = current_health[0][0] - 1
+    
     print goal[0]
     if goal > 0:
-        if len(j) > 14 / goal[0]:
+        if len(j) > goal[0]:
+            feed = current_health[0][0] + (len(j) - goal[0])
             add_query('update pit set health=? where uid=?', (str(feed), session['userid']))
         else:
+            starve = current_health[0][0] - (goal[0] - len(j))
             add_query('update pit set health=? where uid=?', (str(starve), session['userid']))
 
 
@@ -110,7 +110,7 @@ def dash():
 def pet():
     if not session.get('logged_in'):
         return render_template("home.html", error='Must login before accessing pet page!')
-    return "Hello, %s. %s is awake to play!" % (session['username'], session['pitname'])
+    return render_template("/pet.html", name=session['username'], pitname=session['pitname'], health=session['health'])
 
 @app.route("/feed/")
 def feed():

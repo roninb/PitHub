@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<body>
+	<title></title></title> 
+	<link href="../static/style_pit.css" rel="stylesheet" type="text/css">
+</head>
+    <div class="container">
+		<!-- content -->
+		<div id="header">
+    	<h3><img class="banner" src="../static/banner.gif" alt="PitHub"></h3></div>
+		<div class="section_nav">
+				<h4 style="text-align:center;">PitHub</h4>
+				 {% from "navbar.html" import render_nav %}
+				{{ render_nav()}}
+				<p class="flow-text">Hi! Welcome to PitHub. This site is a place for anyone who needs motivation, be it a gentle push or a good kick in the rear. We keep your ambitions and your lifestyle goals balanced by offering you relaxing games when you've worked too much. It's also easy to keep track of how much work you've done with our adorable pit bulls.</p>
+			</div>
+        <div class="section row">
+            <div class="col s12 m12">
+                <p>
+                  {% if health > 7 %}
+                  <img src="../static/happy_pit.jpg"/>
+                  {% elif health > 5 %}
+                  <img src="../static/static_pit.jpg"/>
+                  {% elif health > 4 %}
+                  <img src="../static/confused_pit.jpg"/>
+                  {% elif health > 3 %}
+                  <img src="../static/sad_pit.jpg"/>
+                  {% elif health > 2 %}
+                  <img src="../static/angry_pit.jpg"/>
+                  {% elif health < -5 %}
+                  <img src="../static/rip.jpg"/>
+                  {% else %}
+                  <img src="../static/super_sad_pit.jpg"/>
+                `{% endif %}
+                </p>
+
+                
+          </div> 
+        </div> 
+		</div> 
+	</div> 
+
+
+</body></html>
