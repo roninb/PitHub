@@ -1,0 +1,42 @@
+<html lang="en"><head></head><body class="white-text grey darken-2"><header>
+	<title>Settings</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+</header>
+
+    <div class="container">
+		<!-- content -->
+		<div class="section">
+			<div class="">
+				<h4 style="text-align:center;">PitHub</h4>
+				<p class="flow-text">Change various settings below.</p>
+			</div>
+        <div class="section row">
+            <div class="col s12 m12">
+              <form method=post>
+                {% if error %}
+                <p> {{ error }} </p>
+                {% endif %}
+                <p>
+                  Github Username: <input type="text" name="gusername" value="" />
+                  <select name="species" class="broswer-default grey-text text-darken3">
+                    {% for repo in repos %}
+                      <option>{{ repo.name }}</name>
+                  </select>
+                  {% endfor %}
+                  Goal: <input type="number" name="commits" />
+                  <span>
+                    <input type="text" name="newrepo" value="" />
+                    <button class="btn waves-effect waves-light" type="submit" name="addrepo">Add</button>
+                  </span>
+                  Password: <input type="password" name="password" value="" />
+                  Petname: <input type="text" name="pitname" value="" />
+                </p>
+                <p><button class="btn waves-effect waves-light" type="submit" name="submit">Submit</button></p>
+              </form>
+          </div>
+        </div>
+		</div>
+	</div>
+
+
+</body></html>
