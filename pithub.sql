@@ -6,6 +6,7 @@ create table user(
   gusername text
 );
 
+drop table if exists repo;
 create table repo(
   repoid integer primary key,
   name text not null,
