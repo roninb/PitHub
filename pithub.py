@@ -5,6 +5,7 @@ from flask import request           # for dealing with post
 from flask import redirect          # used after logging out
 from flask import g                 # used to identify database type (?)
 #import db                           # database functionality
+import os                           # connect to cloud9 hosting server
 import sqlite3                      # database functionality
 import json                         # used to easily deal with github data
 from datetime import datetime       # used to measure your goals
