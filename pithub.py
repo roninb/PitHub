@@ -6,6 +6,7 @@ from flask import redirect          # used after logging out
 from flask import g                 # used to identify database type (?)
 #import db                           # database functionality
 import os                           # connect to cloud9 hosting server
+import requests                     # needed to pull REST data from github
 import sqlite3                      # database functionality
 import json                         # used to easily deal with github data
 from datetime import datetime       # used to measure your goals
@@ -53,19 +54,29 @@ def get_commits(github_username, github_repo):
     current_datetime = datetime.now()
     two_weeks_ago = timedelta(weeks=2)
     since = current_datetime - two_weeks_ago
-    github_username = str(github_username[0])
-    github_repo = str(github_repo[0])
     print github_username + github_repo
     githuburl = 'https://api.github.com/repos/%s/%s/commits?since=%s' % (github_username, github_repo, since.isoformat())
     r = requests.get(githuburl)
     j = r.json()
+    
+    goal = query_db('select commits from repo where name=? and uid=?', (github_repo, str(session['userid'])), True)
+    current_health = query_db('select health from pit where uid=?', (str(session['userid'])),)
+    feed = current_health[0][0] + 1 
+    starve = current_health[0][0] - 1
+    print goal[0]
+    if goal > 0:
+        if len(j) > 14 / goal[0]:
+            add_query('update pit set health=? where uid=?', (str(feed), session['userid']))
+        else:
+            add_query('update pit set health=? where uid=?', (str(starve), session['userid']))
 
-    add_query('update pit set commits=? where uid=?', (len(j), str(session['userid'])))
 
 # view methods
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    if session.get('logged_in'):
+        return render_template("/dash")
     error = None
     if request.method == 'POST':
         for q in query_db('select * from user where username=?', (request.form['username'],)):
@@ -102,16 +113,18 @@ def pet():
 @app.route("/feed/")
 def feed():
     try:
-        repos = query_db('select * from repo where uid=?', session['userid'])
+        repos = query_db('select * from repo where uid=?', (str(session['userid'])),)
         for repo in repos:
             gu = session['github_username']
             rn = repo['name']
             get_commits(gu,rn)
 
-    except sqlite3.error, e:
+    except sqlite3.Error, e:
         error = "You must have at least one repo added under settings before trying to feed your pet!"
         render_template("/home.html", error=error)
-
+        
+    return redirect("/pet")
+    
 @app.route("/settings/", methods=['GET', 'POST'])
 def settings(): 
     if not session.get('logged_in'):
