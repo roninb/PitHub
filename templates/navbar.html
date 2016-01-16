@@ -1,12 +1,12 @@
 {% macro render_nav() %}
-    <div class="nav-wrapper grey darken-4">
-      <a href="home.html">PitHub</a>
-      <ul>
-      	<li><a href="/dash">Dashboard</a></li>
-        <li><a href="/pet">Pet</a></li>
-        <li><a href="/feed">Feed</a></li>
-        <li><a href="/settings">Settings</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </div>
+    <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href="home.html"></a>Home</button>
+  <button type="button" class="btn btn-default"><a href="/dash"></a>Dashboard</button>
+  <button type="button" class="btn btn-default"><a href="/pet">Pet</button>
+  <button type="button" class="btn btn-default"><a href="/feed">Feed</button>
+  <button type="button" class="btn btn-default"><a href="/settings">Settings</button>
+  <button type="button" class="btn btn-default"><a href="/logout">Logout</button>
+</div>
  {% endmacro %}
+ 
+ 
