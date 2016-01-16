@@ -10,6 +10,10 @@
             <h3><img class="banner" src="../static/banner.gif" alt="PitHub"></h3>
         </div>
         <div class="section">
+            <p style="text-align: center">
+				 {% from "navbar.html" import render_nav %}
+				{{ render_nav()}}
+				</p>
             <p>
 Hello, {{ name }}!
 You own pet {% if pitname %}

@@ -13,8 +13,11 @@
 		<div id="header">
     	<h3><img class="banner" src="../static/banner.gif" alt="PitHub"></h3></div>
 		<div class="section">
-			<div class="">
 				<h4 style="text-align:center;">PitHub</h4>
+				<p style="text-align: center">
+				 {% from "navbar.html" import render_nav %}
+				{{ render_nav()}}
+				</p>
 				<p class="flow-text">Change various settings below. Any text you enter, will change your settings, so beware....</p>
 			</div>
         <div class="section row">
