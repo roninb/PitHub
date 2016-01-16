@@ -19,6 +19,10 @@ body {
     margin: 20px;
     padding: 5px;
 }
+#section_new{
+    margin-left: auto;
+    margin-right: auto;
+}
 #header{
   width: 100%;
   padding: 0;
